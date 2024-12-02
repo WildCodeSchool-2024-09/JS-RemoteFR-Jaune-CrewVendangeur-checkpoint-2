@@ -3,10 +3,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-/* ************************************************************************* */
-
 import App from "./App";
 
+import CupcakeDetails from "./pages/CupcakeDetails";
 import CupcakeList from "./pages/CupcakeList";
 import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
@@ -31,6 +30,10 @@ const router = createBrowserRouter([
           const response = await fetch("http://localhost:3310/api/cupcakes");
           return response.json();
         },
+      },
+      {
+        path: "/cupcakes/:id",
+        element: <CupcakeDetails />,
       },
     ],
   },
