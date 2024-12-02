@@ -10,8 +10,15 @@ Exemples :
 */
 
 function countLetters(givenString: string, letter: string): number {
-  // Your code here !
-  return 0;
+  const letterToLowercase = letter.toLowerCase();
+  const givenstringToLetter = givenString
+    .toLowerCase()
+    .split("")
+    .filter(
+      (letter) => /[a-z]/.test(letter) && letter === letterToLowercase,
+    ).length;
+
+  return givenstringToLetter;
 }
 
 export default countLetters;
