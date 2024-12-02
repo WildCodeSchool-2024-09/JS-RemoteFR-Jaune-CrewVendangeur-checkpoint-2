@@ -11,7 +11,18 @@ Exemples :
 
 function countLetters(givenString: string, letter: string): number {
   // Your code here !
-  return 0;
+  // create an empty array to hold all the given letter
+  const givenLetterArray = [];
+  // split string and store in array
+  const givenStringArray = givenString.split("");
+  // put all the given letter in an array
+  for (const element of givenStringArray) {
+    if (element === letter) {
+      givenLetterArray.push(element);
+    }
+  }
+  // take the length of the array
+  return givenLetterArray.length;
 }
 
 export default countLetters;
