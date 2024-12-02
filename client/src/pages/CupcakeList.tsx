@@ -47,6 +47,7 @@ function CupcakeList() {
   console.info(useLoaderData() as CupcakeArray);
 
   // Step 3: get all accessories
+
   const [accessories, setAccessories] = useState<AccessoryArray>([]);
 
   useEffect(() => {
@@ -59,14 +60,14 @@ function CupcakeList() {
         const data = (await response.json()) as AccessoryArray;
         setAccessories(data);
         console.info(data);
-        console.info(accessories);
       } catch (error) {
         console.error("Error fetching accessories:", error);
       }
     };
 
     fetchAccessories();
-  }, [accessories]);
+  }, []);
+
   // Step 5: create filter state
 
   return (
@@ -78,7 +79,13 @@ function CupcakeList() {
           Filter by{" "}
           <select id="cupcake-select">
             <option value="">---</option>
+
             {/* Step 4: add an option for each accessory */}
+            {accessories.map((accessory) => (
+              <option key={accessory.id} value={accessory.slug}>
+                {accessory.name}
+              </option>
+            ))}
           </select>
         </label>
       </form>
@@ -90,6 +97,7 @@ function CupcakeList() {
             <Cupcake data={cupcake} />
           </li>
         ))}
+
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
           <Cupcake data={sampleCupcakes[0]} />
