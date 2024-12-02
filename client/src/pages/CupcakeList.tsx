@@ -49,7 +49,6 @@ function CupcakeList() {
   // Step 3: get all accessories
 
   const [accessories, setAccessories] = useState<AccessoryArray>([]);
-
   useEffect(() => {
     const fetchAccessories = async () => {
       try {
@@ -70,6 +69,11 @@ function CupcakeList() {
 
   // Step 5: create filter state
 
+  const [selectedAccessory, setSelectedAccessory] = useState("");
+  const filteredCupcakes = selectedAccessory
+    ? cupcakes.filter((cupcake) => cupcake.accessory === selectedAccessory)
+    : cupcakes;
+
   return (
     <>
       <h1>My cupcakes</h1>
@@ -77,7 +81,11 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select
+            id="cupcake-select"
+            value={selectedAccessory}
+            onChange={(e) => setSelectedAccessory(e.target.value)}
+          >
             <option value="">---</option>
 
             {/* Step 4: add an option for each accessory */}
@@ -91,7 +99,7 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Map des cupcakes pour afficher la liste complète */}
-        {cupcakes.map((cupcake) => (
+        {filteredCupcakes.map((cupcake) => (
           <li key={cupcake.id} className="cupcake-item">
             {/*passage de la prop à Cupcake*/}
             <Cupcake data={cupcake} />
@@ -102,6 +110,7 @@ function CupcakeList() {
         <li className="cupcake-item">
           <Cupcake data={sampleCupcakes[0]} />
         </li>
+
         {/* end of block */}
       </ul>
     </>
