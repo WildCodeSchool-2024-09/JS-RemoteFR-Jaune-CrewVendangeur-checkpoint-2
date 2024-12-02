@@ -39,7 +39,7 @@ type CupcakeArray = typeof sampleCupcakes;
 /* ************************************************************************* */
 
 function CupcakeList() {
-  // Step 1: get all cupcakes
+  const cupcakes = useLoaderData() as CupcakeArray;
   console.info(useLoaderData() as CupcakeArray);
 
   // Step 3: get all accessories
@@ -48,6 +48,13 @@ function CupcakeList() {
 
   return (
     <>
+      <div>
+        {cupcakes.length > 0 ? (
+          cupcakes.map((cupcake) => <Cupcake data={cupcake} key={cupcake.id} />)
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
       <h1>My cupcakes</h1>
       <form className="center">
         <label htmlFor="cupcake-select">
