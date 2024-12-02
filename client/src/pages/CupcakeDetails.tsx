@@ -25,9 +25,5 @@ export default function CupcakeDetails() {
     fetchCupcake(id ? id : "");
   }, [id]);
 
-  return (
-    <div className="cupcake-details">
-      {data ? <Cupcake data={data} /> : null}
-    </div>
-  );
+  return data ? <Cupcake data={data} /> : null;
 }
