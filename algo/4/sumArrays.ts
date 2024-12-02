@@ -11,7 +11,19 @@ sumArr( ["2", "5", "3"], ["2", "4", "9", "5", "5"] ) should return ["4", "9", "1
 
 function sumArr(arrayA: string[], arrayB: string[]): string[] {
   // Your code here !
-  return [];
+  // get the length of the longest array
+  const maxLength = Math.max(arrayA.length, arrayB.length);
+  // create an empty array to store the result
+  const result: string[] = [];
+  // loop through the arrays
+  for (let i = 0; i < maxLength; i++) {
+    // get the value of the current index for each array
+    const valueA = Number(arrayA[i]) || 0;
+    const valueB = Number(arrayB[i]) || 0;
+    // add the values and push the result to the result array
+    result.push((valueA + valueB).toString());
+  }
+  return result;
 }
 
 export default sumArr;
